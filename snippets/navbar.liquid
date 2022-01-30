@@ -1,31 +1,114 @@
 <nav class="navbar navbar-expand-lg">
     <div class="search-area">
-      <div class="search-area-inner d-flex align-items-center justify-content-center">
-        <div class="close-btn"><i class="icon-close"></i></div>
-        <form action="#">
-          <div class="form-group">
-            <input type="search" name="search" id="search" placeholder="What are you looking for?">
-            <button type="submit" class="submit"><i class="icon-search"></i></button>
-          </div>
-        </form>
-      </div>
+        <div class="search-area-inner d-flex align-items-center justify-content-center">
+            <div class="close-btn"><i class="icon-close"></i></div>
+            <form action="#">
+                <div class="form-group">
+                    <input type="search" name="search" id="search" placeholder="What are you looking for?">
+                    <button type="submit" class="submit"><i class="icon-search"></i></button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="container-fluid">  
-      <!-- Navbar Header  --><a href="index.html" class="navbar-brand"><img src="{{settings.header_logo | img_url: '2048'}}" alt="..."></a>
-      <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
-      <!-- Navbar Collapse -->
-      <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav mx-auto">
+    <div class="container-fluid">
+        <!-- Navbar Header  --><a href="index.html" class="navbar-brand"><img
+                src="{{settings.header_logo | img_url: '2048'}}" alt="..."></a>
+        <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i
+                class="fa fa-bars"></i></button>
+        <!-- Navbar Collapse -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav mx-auto">
+                {% for link in linklists[settings.main_menu].links %}
+                {% if link.title == "Shop" %}
+                <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" class="nav-link">{{link.title}}<i class="fa fa-angle-down"></i></a>
+                    <div class="dropdown-menu megamenu">
+                      <div class="row">
+                        <div class="col-lg-9">
+                          <div class="row">
+                              {% for childlink in link.links %}
+                              <div class="col-lg-3">
+                             <strong class="text-uppercase">{{childlink.title}}</strong>
+                                <ul class="list-unstyled">
+                                    {% for grandchildlink in childlink.links %}
+                                  <li><a href="{{grandchildlink.url}}">{{grandchildlink.title}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                              </div>
+                              {% endfor %}
+                          <div class="row services-block">
+                            <div class="col-xl-3 col-lg-6 d-flex">
+                              <div class="item d-flex align-items-center">
+                                <div class="icon"><i class="{{settings.main_menu_service_one_icon}} text-primary"></i></div>
+                                <div class="text"><span class="text-uppercase">{{settings.main_menu_service_one_top_text}}</span><small>{{settings.main_menu_service_one_bottom_text}}</small></div>
+                              </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 d-flex">
+                              <div class="item d-flex align-items-center">
+                                <div class="icon"><i class="{{settings.main_menu_service_two_icon}} text-primary"></i></div>
+                                <div class="text"><span class="text-uppercase">{{settings.main_menu_service_two_top_text}}</span><small>{{settings.main_menu_service_two_bottom_text}}</small></div>
+                              </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 d-flex">
+                              <div class="item d-flex align-items-center">
+                                <div class="icon"><i class="{{settings.main_menu_service_three_icon}} text-primary"></i></div>
+                                <div class="text"><span class="text-uppercase">{{settings.main_menu_service_three_top_text}}</span><small>{{settings.main_menu_service_three_bottom_text}}</small></div>
+                              </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6 d-flex">
+                              <div class="item d-flex align-items-center">
+                                <div class="icon"><i class="{{settings.main_menu_service_four_icon}} text-primary"></i></div>
+                                <div class="text"><span class="text-uppercase">{{settings.main_menu_service_four_top_text}}</span><small>{{settings.main_menu_service_four_bottom_text}}</small></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {% assign product_item = all_products[settings.main_menu_product] %}
+                        <div class="col-lg-3 text-center product-col hidden-lg-down">
+                        <a href="{{product_item.url}}" class="product-image">
+                          <img src="{{product_item.featured_image | img_url: '2048x'}}" alt="..." class="img-fluid">
+                        </a>
+                          <h6 class="text-uppercase product-heading"
+                          ><a href="detail.html">{{product_item.title}}</a></h6>
+                          <ul class="rate list-inline">
+                            <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
+                          </ul><strong class="price text-primary">{{product_item.price | money}}</strong>
+                          <a href="#" class="btn btn-template wide">Add to cart</a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                {% elsif link.links != blank %}
+                <li class="nav-item dropdown">
+                <a id="navbarHomeLink" href="index.html" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" class="nav-link active">{{link.title}}
+                <i class="fa fa-angle-down"></i></a>
+                    <ul aria-labelledby="navbarDropdownHomeLink" class="dropdown-menu">
+                        {% for childlink in link.links %}
+                        <li><a href="{{childlink.url}}" class="dropdown-item">{{childlink.title}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                {% else %}
+                <li class="nav-item"><a href="{{link.url}}" class="nav-link">{{link.title}}</a></li>
+                {% endif %}
+                {% endfor %}
+                <!--
           <li class="nav-item dropdown"><a id="navbarHomeLink" href="index.html" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active">Home<i class="fa fa-angle-down"></i></a>
             <ul aria-labelledby="navbarDropdownHomeLink" class="dropdown-menu">
               <li><a href="index.html" class="dropdown-item">Classic Home</a></li>
               <li><a href="index2.html" class="dropdown-item">Parallax sections</a></li>
-              <li><a href="index3.html" class="dropdown-item">Video background                     </a></li>
+              <li><a href="index3.html" class="dropdown-item">Video background</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="category.html" class="nav-link">Shop</a>
           </li>
-          <!-- Megamenu-->
           <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" class="nav-link">Template<i class="fa fa-angle-down"></i></a>
             <div class="dropdown-menu megamenu">
               <div class="row">
@@ -120,8 +203,6 @@
               </div>
             </div>
           </li>
-          <!-- /Megamenu end-->
-          <!-- Multi level dropdown    -->
           <li class="nav-item dropdown"><a id="navbarDropdownMenuLink" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Dropdown<i class="fa fa-angle-down"></i></a>
             <ul aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
               <li><a href="#" class="dropdown-item">Action</a></li>
@@ -144,37 +225,45 @@
               </li>
             </ul>
           </li>
-          <!-- Multi level dropdown end-->
+    
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog </a>
           </li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a>
           </li>
-        </ul>
-        <div class="right-col d-flex align-items-lg-center flex-column flex-lg-row">
-          <!-- Search Button-->
-          <div class="search"><i class="icon-search"></i></div>
-          <!-- User Not Logged - link to login page-->
-          <div class="user"> <a id="userdetails" href="customer-login.html" class="user-link"><i class="icon-profile">                   </i></a></div>
-          <!-- Cart Dropdown-->
-          <div class="cart dropdown show"><a id="cartdetails" href="https://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="icon-cart"></i>
-              <div class="cart-no">1</div></a><a href="cart.html" class="text-primary view-cart">View Cart</a>
-            <div aria-labelledby="cartdetails" class="dropdown-menu">
-              <!-- cart item-->
-              <div class="dropdown-item cart-product">
-                <div class="d-flex align-items-center">
-                  <div class="img"><img src="img/hoodie-man-1.png" alt="..." class="img-fluid"></div>
-                  <div class="details d-flex justify-content-between">
-                    <div class="text"> <a href="#"><strong>Heather Gray Hoodie</strong></a><small>Quantity: 1 </small><span class="price">$75.00 </span></div><a href="#" class="delete"><i class="fa fa-trash-o"></i></a>
-                  </div>
+           -->
+            </ul>
+            <div class="right-col d-flex align-items-lg-center flex-column flex-lg-row">
+                <!-- Search Button-->
+                <div class="search"><i class="icon-search"></i></div>
+                <!-- User Not Logged - link to login page-->
+                <div class="user"> <a id="userdetails" href="customer-login.html" class="user-link"><i
+                            class="icon-profile"> </i></a></div>
+                <!-- Cart Dropdown-->
+                <div class="cart dropdown show"><a id="cartdetails" href="https://example.com" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="icon-cart"></i>
+                        <div class="cart-no">1</div>
+                    </a><a href="cart.html" class="text-primary view-cart">View Cart</a>
+                    <div aria-labelledby="cartdetails" class="dropdown-menu">
+                        <!-- cart item-->
+                        <div class="dropdown-item cart-product">
+                            <div class="d-flex align-items-center">
+                                <div class="img"><img src="img/hoodie-man-1.png" alt="..." class="img-fluid"></div>
+                                <div class="details d-flex justify-content-between">
+                                    <div class="text"> <a href="#"><strong>Heather Gray
+                                                Hoodie</strong></a><small>Quantity: 1 </small><span class="price">$75.00
+                                        </span></div><a href="#" class="delete"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- total price-->
+                        <div class="dropdown-item total-price d-flex justify-content-between"><span>Total</span><strong
+                                class="text-primary">$75.00</strong></div>
+                        <!-- call to actions-->
+                        <div class="dropdown-item CTA d-flex"><a href="cart.html" class="btn btn-template wide">View
+                                Cart</a><a href="checkout1.html" class="btn btn-template wide">Checkout</a></div>
+                    </div>
                 </div>
-              </div>
-              <!-- total price-->
-              <div class="dropdown-item total-price d-flex justify-content-between"><span>Total</span><strong class="text-primary">$75.00</strong></div>
-              <!-- call to actions-->
-              <div class="dropdown-item CTA d-flex"><a href="cart.html" class="btn btn-template wide">View Cart</a><a href="checkout1.html" class="btn btn-template wide">Checkout</a></div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </nav>
+</nav>

@@ -26,6 +26,88 @@
             "id":"header_logo",
             "type": "image_picker",
             "label": "Header-Logo"
+        },
+        {
+            "type": "header",
+            "content": "Navbar"
+        },
+        {
+            "id": "main_menu",
+            "type": "link_list",
+            "label":"Main Menu"
+        },
+        {
+            "type": "header",
+            "content": "Services"
+        },
+        {
+            "id": "main_menu_service_one_icon",
+            "type": "text",
+            "label":"Main Menu Service One Icon"
+        },
+        {
+            "id": "main_menu_service_one_top_text",
+            "type": "text",
+            "label":"Main Menu Service One Top Text"
+        },
+        {
+            "id": "main_menu_service_one_bottom_text",
+            "type": "text",
+            "label":"Main Menu Service One Bottom Text"
+        },
+        {
+            "id": "main_menu_service_two_icon",
+            "type": "text",
+            "label":"Main Menu Service Two Icon"
+        },
+        {
+            "id": "main_menu_service_two_top_text",
+            "type": "text",
+            "label":"Main Menu Service Two Top Text"
+        },
+        {
+            "id": "main_menu_service_two_bottom_text",
+            "type": "text",
+            "label":"Main Menu Service Two Bottom Text"
+        },
+        {
+            "id": "main_menu_service_three_icon",
+            "type": "text",
+            "label":"Main Menu Service Three Icon"
+        },
+        {
+            "id": "main_menu_service_three_top_text",
+            "type": "text",
+            "label":"Main Menu Service Three Top Text"
+        },
+        {
+            "id": "main_menu_service_three_bottom_text",
+            "type": "text",
+            "label":"Main Menu Service Three Bottom Text"
+        },
+        {
+            "id": "main_menu_service_four_icon",
+            "type": "text",
+            "label":"Main Menu Service Four Icon"
+        },
+        {
+            "id": "main_menu_service_four_top_text",
+            "type": "text",
+            "label":"Main Menu Service Four Top Text"
+        },
+        {
+            "id": "main_menu_service_four_bottom_text",
+            "type": "text",
+            "label":"Main Menu Service Four Bottom Text"
+        },
+        {
+            "type": "header",
+            "content": "Featured Product"
+        },
+        {
+            "id": "main_menu_product",
+            "type": "product",
+            "label":"Main Menu Product"
         }
       ]
     },
