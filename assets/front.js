@@ -354,3 +354,20 @@ function utils() {
         }, 1000);
     }
 }
+//Sorting collection
+let sortBy = false
+
+if(window.location.search.length){
+    sortBy = new URLSearchParams(window.location.search).get('sort_by')
+}
+//preserve current selection
+//set sort value to present query
+
+if(sortBy){
+    $('#sorting').val(sortBy)
+}
+
+$('#sorting').change(function(e){
+    const { value } = e.currentTarget
+    window.location=`?sort_by=${value}`
+})
